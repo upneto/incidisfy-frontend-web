@@ -1,0 +1,116 @@
+<!-- Cabecalho -->
+<div class="row page-header">
+  <app-header></app-header>
+</div>
+
+<!-- Mensagem -->
+<div clas="container" >
+  <ngb-alert #selfClosingAlert *ngIf="alertMessage" type="{{alertType}}" (closed)="alertMessage = ''" >{{ alertMessage }}</ngb-alert>
+</div>
+
+<!-- Corpo -->
+<div class="container">
+  <div class="row">
+    <div class="column">
+      <a mat-flat-button routerLink="/abertura" >Abertura de Reclamação</a>
+    </div>
+  </div>
+
+  <div class="row">
+    <form class="form" fxLayout="column" [formGroup]="formAbertura">
+
+      <div class="row border bg-light">
+
+        <!-- Documento -->
+        <div class="col-6">
+          <mat-form-field  >
+            <mat-label>Número do documento do cliente</mat-label>
+            <input class="form-control" matInput placeholder="Documento" formControlName="documento" />
+            <span class="app-field-error" *ngIf="formAbertura.get('documento')?.errors && !isSearchValid" >Campo obrigatório!</span>
+          </mat-form-field>
+        </div>
+        <div class="col-6">
+          <button mat-fab extended color="primary" class="float-right" (click)="findConsumer();" >
+            <mat-icon>search</mat-icon>
+            Pesquisar Cliente
+          </button>
+        </div>
+
+        <!-- codigo -->
+        <div class="col-6">
+          <mat-form-field>
+            <mat-label>Código</mat-label>
+            <input class="form-control" matInput placeholder="Código" formControlName="codigoCliente" readonly />
+            <span class="app-field-error" *ngIf="formAbertura.get('codigoCliente')?.errors && !isInsertValid" >Campo obrigatório!</span>
+          </mat-form-field>
+        </div>
+        <!-- Descricao -->
+        <div class="col-6">
+          <mat-form-field>
+            <mat-label>Nome</mat-label>
+            <input class="form-control" matInput placeholder="Nome" formControlName="descricaoCliente" readonly />
+          </mat-form-field>
+        </div>
+      </div>
+
+      <br />
+
+      <div class="row border bg-light">
+        <!-- Categoria -->
+        <div class="col-6">
+          <mat-form-field>
+            <mat-mat-label>Categoria</mat-mat-label>
+            <select matNativeControl formControlName="codigoCategoria" name="Categoria">
+              <option value="" selected ></option>
+              <option *ngFor="let categoria of comboCategoria" [value]="categoria.codigo">
+                {{categoria.descricao}}
+              </option>
+            </select>
+            <span class="app-field-error" *ngIf="formAbertura.get('codigoCategoria')?.errors && !isInsertValid" >Campo obrigatório!</span>
+          </mat-form-field>
+        </div>
+
+        <!-- Produto -->
+        <div class="col-6">
+          <mat-form-field>
+            <mat-mat-label>Produto</mat-mat-label>
+            <select matNativeControl formControlName="codigoProduto" name="Produto">
+              <option value="" selected ></option>
+              <option *ngFor="let produto of comboProduto" [value]="produto.codigo">
+                {{produto.descricao}} - {{produto.marca}} {{produto.modelo}}
+              </option>
+            </select>
+            <span class="app-field-error" *ngIf="formAbertura.get('codigoProduto')?.errors && !isInsertValid" >Campo obrigatório!</span>
+          </mat-form-field>
+        </div>
+
+        <br />
+
+        <!-- Descricao -->
+        <div class="col-12" >
+          <mat-form-field>
+            <mat-label>Descrição</mat-label>
+            <input class="form-control" matInput placeholder="Descrição" formControlName="descricao" id="inputDescricao" />
+            <span class="app-field-error" *ngIf="formAbertura.get('descricao')?.errors && !isInsertValid" >Campo obrigatório!</span>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <br />
+
+      <!-- Acoes -->
+      <div class="row">
+        <div class="col-12">
+          <button mat-fab extended color="primary" class="float-right" (click)="insert();" >
+              <mat-icon>save</mat-icon>
+              Gravar Reclamacao
+          </button>
+        </div>
+      </div>
+
+    </form>
+  </div>
+
+</div>
+
+

@@ -1,0 +1,82 @@
+<!-- Cabecalho -->
+<div class="row page-header">
+  <app-header></app-header>
+</div>
+
+<!-- Mensagem -->
+<div clas="container" >
+  <ngb-alert #selfClosingAlert *ngIf="alertMessage" type="{{alertType}}" (closed)="alertMessage = ''" >{{ alertMessage }}</ngb-alert>
+</div>
+
+<!-- Corpo -->
+<div class="container">
+  <div class="row">
+    <div class="column">
+      <a mat-flat-button routerLink="/abertura" >Abertura de Reclamação</a>
+      /
+      <a mat-flat-button routerLink="/anexo" >Anexos da Reclamação</a>
+    </div>
+  </div>
+
+  <div class="row">
+    <form class="form" fxLayout="column" [formGroup]="formAnexo">
+      <div class="container" >
+
+        <!-- Reclamação -->
+        <div class="row border bg-light">
+
+          <!-- Documento -->
+          <div class="col-5">
+            <mat-form-field  >
+              <mat-label>Documento do Cliente</mat-label>
+              <input class="form-control" matInput placeholder="Documento" formControlName="documento" />
+              <span class="app-field-error" *ngIf="formAnexo.get('documento')?.errors && !isSearchValid" >Campo obrigatório!</span>
+            </mat-form-field>
+          </div>
+          <!-- Reclamacao -->
+          <div class="col-5">
+            <mat-form-field  >
+              <mat-label>Número da Reclamação</mat-label>
+              <input class="form-control" matInput placeholder="Reclamação" formControlName="codigo" />
+              <span class="app-field-error" *ngIf="formAnexo.get('codigo')?.errors && !isSearchValid" >Campo obrigatório!</span>
+            </mat-form-field>
+          </div>
+          <div class="col-2">
+            <button mat-fab extended color="primary" class="float-right" (click)="findReclamation();" >
+              <mat-icon>search</mat-icon>
+              Pesquisar Reclamação
+            </button>
+          </div>
+        </div>
+
+        <br />
+
+        <!-- Arquivo -->
+        <div class="row border bg-light">
+          <mat-form-field>
+            <input type="file" matInput (change)="onFileSelected($event)">
+          </mat-form-field>
+        </div>
+
+        <br />
+
+        <div class="row" >
+
+          <label>Lista de Anexos</label>
+          <table #table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+            <!-- Nome do Arquivo -->
+            <ng-container matColumnDef="nomeArquivo">
+              <th mat-header-cell *matHeaderCellDef> Nome do Arquivo </th>
+              <td mat-cell *matCellDef="let element"> {{element.nomeArquivo}} </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="download(row);"></tr>
+          </table>
+        </div>
+
+      </div>
+    </form>
+  </div>
+</div>

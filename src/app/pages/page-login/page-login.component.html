@@ -1,0 +1,36 @@
+<!-- Cabecalho -->
+<div class="row page-header">
+  <nav class="navbar navbar-dark bg-dark">
+    <a class="navbar-brand title" href="#">incidisfy - Ordem de Serviço</a>
+  </nav>
+</div>
+
+<!-- CORPO -->
+<div clas="container" >
+  <ngb-alert #selfClosingAlert *ngIf="alertMessage" type="{{alertType}}" (closed)="alertMessage = ''" >{{ alertMessage }}</ngb-alert>
+</div>
+
+<div flex class="page-body">
+  <mat-card class="box">
+    <mat-card-header>
+      <mat-card-title class="label">Log in</mat-card-title>
+    </mat-card-header>
+    <form [formGroup]="formLogin" >
+      <mat-card-content>
+        <mat-form-field appearance="fill" class="full-width">
+          <mat-label>Usuário</mat-label>
+          <input matInput placeholder="Usuário" maxlength="30" formControlName="usuario" >
+          <span class="app-field-error" *ngIf="formLogin.get('usuario')?.errors && !isValid" >Campo obrigatório!</span>
+        </mat-form-field>
+        <mat-form-field class="full-width">
+          <mat-label>Senha</mat-label>
+          <input matInput placeholder="Senha" appearance="fill" type="password" maxlength="30" formControlName="senha" >
+          <span class="app-field-error" *ngIf="formLogin.get('senha')?.errors && !isValid" >Campo obrigatório!</span>
+        </mat-form-field>
+      </mat-card-content>
+
+      <!-- Botao Entrar -->
+      <button mat-flat-button color="primary" (click)="doLogin();" >Entrar</button>
+    </form>
+  </mat-card>
+</div>

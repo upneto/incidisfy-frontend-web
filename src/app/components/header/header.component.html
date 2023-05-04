@@ -1,0 +1,16 @@
+<nav class="navbar navbar-dark bg-dark" >
+  <a class="navbar-brand title" href="#">incidisfy - Controle de Reclamações</a>
+
+
+  <button mat-button class="menu" [matMenuTriggerFor]="menu" style="background-color: #bbb;" >
+    <mat-icon>more_vert</mat-icon>
+  </button>
+  <mat-menu #menu="matMenu" xPosition="before" >
+    <button mat-menu-item routerLink="/abertura" >Abertura</button>
+    <button mat-menu-item routerLink="/anexo" >Anexo</button>
+    <button mat-menu-item routerLink="/lista" >Lista</button>
+  </mat-menu>
+
+</nav>
+
+<br />
