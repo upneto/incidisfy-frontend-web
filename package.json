@@ -3,7 +3,7 @@
   "version": "0.0.1-SNAPSHOT",
   "scripts": {
     "ng": "ng",
-    "open": "ng serve --open",
+    "open": " serve --open",
     "start": "node server.js --port 8080",
     "start:local": "ng serve --configuration=local --proxy-config=proxy.config.js",
     "build": "node --max_old_space_size=5048 ./node_modules/@angular/cli/bin/ng build --configuration",
