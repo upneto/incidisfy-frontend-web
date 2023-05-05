@@ -7,7 +7,6 @@ WORKDIR /src
 RUN npm cache clean --force
 
 COPY . .
-CMD ls
 RUN npm install
 RUN npm run build --prod
 

@@ -6,7 +6,7 @@
     "open": "ng serve --open",
     "start": "node server.js",
     "start:local": "ng serve --configuration=local --proxy-config=proxy.config.js",
-    "build": "ng build --configuration --aot=false --build-optimizer=false",
+    "build": "node --max_old_space_size=5048 ./node_modules/@angular/cli/bin/ng build --configuration",
     "build:docker": "ng build --configuration=docker",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
