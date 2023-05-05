@@ -1,5 +1,5 @@
 
-const URL_BASE = 'https://incidisfy-backend-gateway.herokuapp.com';
+const URL_BASE = 'http://ec2-54-152-157-19.compute-1.amazonaws.com:8080';
 
 export const environment = {
   production: true,
